@@ -13,8 +13,13 @@ public class Main {
         }; //I'm using a 2D array here as ints are easy to work with and low on space/computation time.
         Scanner input = new Scanner(System.in);
         Random rand = new Random();
-        System.out.println("Would you like a random grid? Type Y if yes, otherwise example grid will be used.");
-        if(input.next().equals("Y")){
+        String answer;
+        //make sure that the user inputs either Y or N
+        do{
+            System.out.println("Would you like a random grid? Type Y if yes, N to use example grid");
+            answer = input.next();
+        } while (!(answer.equals("Y")) && !(answer.equals("N")));
+        if(answer.equals("Y")){
             //checking to make sure that the input is a positive int, loop if not
             do{
                 System.out.println("Please input number of columns you would like: ");
