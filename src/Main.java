@@ -4,6 +4,7 @@ public class Main {
     public static void main(String[] args) {
         int columns = 8;
         int rows = 6; //hardcoding columns and rows here just in case.
+        int inputNumber;
         int[][] grid = {{0,0,0,0,0,0,1,0},
                 {1,1,1,0,0,0,1,0},
                 {0,0,0,0,0,0,1,0},
@@ -15,10 +16,24 @@ public class Main {
         Random rand = new Random();
         System.out.println("Would you like a random grid? Type Y if yes, otherwise example grid will be used.");
         if(input.next().equals("Y")){
-            System.out.println("Please input number of columns you would like: ");
-            columns = input.nextInt();
-            System.out.println("Please input number of rows you would like: ");
-            rows = input.nextInt();
+            do{
+                System.out.println("Please input number of columns you would like: ");
+                while(!input.hasNextInt()){
+                    System.out.println("Not a number, sorry!");
+                    input.next();
+                }
+                inputNumber = input.nextInt();
+            } while (inputNumber<=0);
+            columns = inputNumber;
+            do{
+                System.out.println("Please input number of rows you would like: ");
+                while(!input.hasNextInt()){
+                    System.out.println("Not a number, sorry!");
+                    input.next();
+                }
+                inputNumber = input.nextInt();
+            } while (inputNumber<=0);
+            rows = inputNumber;
             grid = new int[rows][columns];
             //fill up the new grid with the random values
             for(int r=0; r < rows; r++){
@@ -67,7 +82,7 @@ public class Main {
                         }
                     }
                 }
-                //We iterated right through the cell itself, so we need to subtract it as it can't be its own neighbor
+                //We iterated right through the cell itself, so we need to subtract it as it can't be its own neigbohr
                 livingNeighbors -= originalGrid[r][c];
                 //Implementation of the rules
                 //Any live cell with fewer than two live neighbors dies, as if caused by underpopulation.
