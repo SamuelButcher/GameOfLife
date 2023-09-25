@@ -31,6 +31,7 @@ public class Main {
         printGrid(grid, columns, rows);
         System.out.print("How many iterations would you like to go through?");
         int iterations =  input.nextInt();
+        //iterate through the iterations
         for (int i =0; i< iterations; i++){
             grid = nextState(grid, columns, rows);
             System.out.println("Here is the state after iteration " + (i+1) + ":");
@@ -45,6 +46,7 @@ public class Main {
                 if (grid[r][c] == 0){
                     System.out.print(".");
                 }
+                //if its not 0, it must be 1
                 else{
                     System.out.print("O");
                 }
