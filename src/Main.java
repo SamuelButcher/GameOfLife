@@ -4,7 +4,6 @@ public class Main {
     public static void main(String[] args) {
         int columns = 8;
         int rows = 6; //hardcoding columns and rows here just in case.
-        int inputNumber;
         int[][] grid = {{0,0,0,0,0,0,1,0},
                 {1,1,1,0,0,0,1,0},
                 {0,0,0,0,0,0,1,0},
@@ -16,24 +15,24 @@ public class Main {
         Random rand = new Random();
         System.out.println("Would you like a random grid? Type Y if yes, otherwise example grid will be used.");
         if(input.next().equals("Y")){
+            //checking to make sure that the input is a positive int, loop if not
             do{
                 System.out.println("Please input number of columns you would like: ");
                 while(!input.hasNextInt()){
                     System.out.println("Not a number, sorry!");
                     input.next();
                 }
-                inputNumber = input.nextInt();
-            } while (inputNumber<=0);
-            columns = inputNumber;
+                columns = input.nextInt();
+            } while (columns<=0);
+            //checking to make sure that input is a positive int, loop if not
             do{
                 System.out.println("Please input number of rows you would like: ");
                 while(!input.hasNextInt()){
                     System.out.println("Not a number, sorry!");
                     input.next();
                 }
-                inputNumber = input.nextInt();
-            } while (inputNumber<=0);
-            rows = inputNumber;
+                rows = input.nextInt();
+            } while (rows<=0);
             grid = new int[rows][columns];
             //fill up the new grid with the random values
             for(int r=0; r < rows; r++){
@@ -44,8 +43,15 @@ public class Main {
         }
         System.out.println("Here is the initial state:");
         printGrid(grid, columns, rows);
-        System.out.print("How many iterations would you like to go through?");
-        int iterations =  input.nextInt();
+        int iterations;
+        do{
+            System.out.println("How many iterations would you like to go through?");
+            while(!input.hasNextInt()){
+                System.out.println("Not a number, sorry!");
+                input.next();
+            }
+            iterations = input.nextInt();
+        } while (iterations<=0);
         //iterate through the iterations
         for (int i =0; i< iterations; i++){
             grid = nextState(grid, columns, rows);
